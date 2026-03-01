@@ -1,0 +1,42 @@
+{
+  "phishing": {
+    "investigationPoints": 30,
+    "answers": {
+      "q1": "B",
+      "q2": "C",
+      "q3": ["A", "B", "C"],
+      "q4": "B",
+      "q5": "C"
+    }
+  },
+  "ransomware": {
+    "investigationPoints": 30,
+    "answers": {
+      "q1": "B",
+      "q2": "A",
+      "q3": "C",
+      "q4": "B",
+      "q5": "B"
+    },
+    "recovery": {
+      "correct": "restore",
+      "partial": ["manual"],
+      "points": {
+        "restore": 12,
+        "manual": 4,
+        "pay": 0
+      }
+    }
+  },
+  "exfiltration": {
+    "investigationPoints": 25,
+    "assessmentPoints": 15,
+    "answers": {
+      "q1": "B",
+      "q2": "C",
+      "q3": "C",
+      "q4": "B",
+      "q5": "B"
+    }
+  }
+}

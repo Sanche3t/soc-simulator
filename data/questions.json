@@ -1,0 +1,206 @@
+{
+  "phishing": [
+    {
+      "id": "q1",
+      "question": "What type of attack was this?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Malware infection" },
+        { "id": "B", "text": "Phishing/Social engineering" },
+        { "id": "C", "text": "DDoS attack" },
+        { "id": "D", "text": "Ransomware" }
+      ],
+      "correctAnswer": "B",
+      "points": 8
+    },
+    {
+      "id": "q2",
+      "question": "What was the primary indicator of compromise?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Unusual network traffic" },
+        { "id": "B", "text": "File encryption activity" },
+        { "id": "C", "text": "Suspicious email with typosquatted domain" },
+        { "id": "D", "text": "Unauthorized database access" }
+      ],
+      "correctAnswer": "C",
+      "points": 6
+    },
+    {
+      "id": "q3",
+      "question": "Which authentication checks failed?",
+      "type": "multiple",
+      "options": [
+        { "id": "A", "text": "SPF" },
+        { "id": "B", "text": "DKIM" },
+        { "id": "C", "text": "DMARC" },
+        { "id": "D", "text": "SSL/TLS Certificate" },
+        { "id": "E", "text": "Two-factor authentication" }
+      ],
+      "correctAnswers": ["A", "B", "C"],
+      "points": 8
+    },
+    {
+      "id": "q4",
+      "question": "What was the malicious domain used?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "ciphertech.com" },
+        { "id": "B", "text": "ciphertech-it.com" },
+        { "id": "C", "text": "ciphertech-support.net" },
+        { "id": "D", "text": "cipher-tech.com" }
+      ],
+      "correctAnswer": "B",
+      "points": 4
+    },
+    {
+      "id": "q5",
+      "question": "How many employees were potentially compromised?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "0 employees" },
+        { "id": "B", "text": "1-2 employees" },
+        { "id": "C", "text": "3 employees" },
+        { "id": "D", "text": "5+ employees" }
+      ],
+      "correctAnswer": "C",
+      "points": 4
+    }
+  ],
+
+  "ransomware": [
+    {
+      "id": "q1",
+      "question": "What malware family was detected?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Emotet" },
+        { "id": "B", "text": "Conti Ransomware" },
+        { "id": "C", "text": "Trickbot" },
+        { "id": "D", "text": "Zeus Trojan" }
+      ],
+      "correctAnswer": "B",
+      "points": 6
+    },
+    {
+      "id": "q2",
+      "question": "How did the malware enter the system?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Email attachment (attachment.pdf.exe)" },
+        { "id": "B", "text": "USB drive" },
+        { "id": "C", "text": "Software vulnerability" },
+        { "id": "D", "text": "Brute force attack" }
+      ],
+      "correctAnswer": "A",
+      "points": 6
+    },
+    {
+      "id": "q3",
+      "question": "What was the C2 server IP?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "192.168.1.1" },
+        { "id": "B", "text": "8.8.8.8" },
+        { "id": "C", "text": "185.220.101.45" },
+        { "id": "D", "text": "10.0.0.1" }
+      ],
+      "correctAnswer": "C",
+      "points": 6
+    },
+    {
+      "id": "q4",
+      "question": "What is the BEST recovery strategy?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Pay the ransom" },
+        { "id": "B", "text": "Restore from backup" },
+        { "id": "C", "text": "Attempt manual decryption" },
+        { "id": "D", "text": "Rebuild system from scratch" }
+      ],
+      "correctAnswer": "B",
+      "points": 6
+    },
+    {
+      "id": "q5",
+      "question": "Should the infected device remain on network?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Yes, to monitor activity" },
+        { "id": "B", "text": "No, isolate immediately" },
+        { "id": "C", "text": "Only disconnect from internet" },
+        { "id": "D", "text": "Restart device first" }
+      ],
+      "correctAnswer": "B",
+      "points": 6
+    }
+  ],
+
+  "exfiltration": [
+    {
+      "id": "q1",
+      "question": "Database accessed?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "HR_EMPLOYEES" },
+        { "id": "B", "text": "APEX_CLIENTS" },
+        { "id": "C", "text": "FINANCIAL_RECORDS" },
+        { "id": "D", "text": "SYSTEM_LOGS" }
+      ],
+      "correctAnswer": "B",
+      "points": 5
+    },
+    {
+      "id": "q2",
+      "question": "Amount exfiltrated?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Less than 1 GB" },
+        { "id": "B", "text": "1-2 GB" },
+        { "id": "C", "text": "4.2 GB" },
+        { "id": "D", "text": "More than 5 GB" }
+      ],
+      "correctAnswer": "C",
+      "points": 5
+    },
+    {
+      "id": "q3",
+      "question": "Transfer destination?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Internal file share" },
+        { "id": "B", "text": "Cloud storage" },
+        { "id": "C", "text": "External IP (203.45.67.89)" },
+        { "id": "D", "text": "USB device" }
+      ],
+      "correctAnswer": "C",
+      "points": 5
+    },
+    {
+      "id": "q4",
+      "question": "Should employee be notified immediately?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Yes, call immediately" },
+        { "id": "B", "text": "No, preserve evidence first" },
+        { "id": "C", "text": "Yes, via email" },
+        { "id": "D", "text": "Wait 24 hours" }
+      ],
+      "correctAnswer": "B",
+      "points": 5
+    },
+    {
+      "id": "q5",
+      "question": "Law enforcement contact?",
+      "type": "single",
+      "options": [
+        { "id": "A", "text": "Yes, immediately" },
+        { "id": "B", "text": "Yes, after legal review" },
+        { "id": "C", "text": "No, internal matter" },
+        { "id": "D", "text": "Only if data appears online" }
+      ],
+      "correctAnswer": "B",
+      "points": 5
+    }
+  ]
+}

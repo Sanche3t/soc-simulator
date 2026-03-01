@@ -1,0 +1,326 @@
+{
+  "scenarios": [
+    {
+      "id": "phishing",
+      "title": "Phishing Attack Campaign",
+      "type": "email_security",
+      "difficulty": "beginner",
+      "severity": "critical",
+      "duration": "5 minutes",
+      "description": "Multiple employees received suspicious emails requesting urgent credential verification. Investigate indicators and respond.",
+      "briefing": {
+        "incidentId": "INC-2024-0156",
+        "timestamp": "February 14, 2024 - 14:23 UTC",
+        "company": "CipherTech Solutions",
+        "situation": "At 14:15 UTC, the email security gateway flagged 15 suspicious emails claiming to be from 'IT Support' requesting urgent credential verification. Three employees clicked the link.",
+        "mission": [
+          "Analyze the suspicious email",
+          "Identify malicious indicators",
+          "Determine scope of attack",
+          "Execute containment procedures",
+          "Document findings"
+        ]
+      },
+      "evidence": {
+        "email": {
+          "from": "support@ciphertech-it.com",
+          "to": "employees@ciphertech.com",
+          "subject": "URGENT: Account Verification Required",
+          "date": "Feb 14, 2024 14:15:32",
+          "body": "Your account will be suspended in 24 hours unless you verify your credentials immediately.",
+          "link": "http://ciphertech-verify.tk/login.php"
+        },
+        "analysis": {
+          "authentication": {
+            "spf": "FAIL",
+            "dkim": "FAIL",
+            "dmarc": "FAIL",
+            "returnPath": "bounce@malicious-server.ru"
+          },
+          "domain": {
+            "suspicious": "ciphertech-it.com",
+            "legitimate": "ciphertech.com",
+            "age": "2 days",
+            "issue": "typosquatting"
+          },
+          "url": {
+            "link": "http://ciphertech-verify.tk/login.php",
+            "flagged": "8/12 vendors",
+            "encryption": "No HTTPS",
+            "classification": "credential harvesting"
+          },
+          "impact": {
+            "sent": 15,
+            "opened": 12,
+            "clicked": 3,
+            "affected": [
+              "sarah.chen@ciphertech.com",
+              "mike.ross@ciphertech.com",
+              "jessica.day@ciphertech.com"
+            ]
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": "action1",
+          "text": "Quarantine all similar emails",
+          "impact": "critical",
+          "correct": true,
+          "points": 10
+        },
+        {
+          "id": "action2",
+          "text": "Block sender domain at gateway",
+          "impact": "critical",
+          "correct": true,
+          "points": 10
+        },
+        {
+          "id": "action3",
+          "text": "Reset passwords for 3 affected users",
+          "impact": "critical",
+          "correct": true,
+          "points": 10
+        },
+        {
+          "id": "action4",
+          "text": "Send security alert to organization",
+          "impact": "high",
+          "correct": true,
+          "points": 5
+        },
+        {
+          "id": "action5",
+          "text": "Create incident ticket",
+          "impact": "medium",
+          "correct": true,
+          "points": 3
+        },
+        {
+          "id": "action6",
+          "text": "Notify IT Security Manager",
+          "impact": "medium",
+          "correct": true,
+          "points": 2
+        }
+      ],
+      "investigationPoints": 30
+    },
+
+    {
+      "id": "ransomware",
+      "title": "Ransomware Infection",
+      "type": "endpoint_security",
+      "difficulty": "intermediate",
+      "severity": "critical",
+      "duration": "6 minutes",
+      "description": "EDR detected suspicious PowerShell and mass encryption activity after a user opened a malicious attachment.",
+      "briefing": {
+        "incidentId": "INC-2024-0157",
+        "timestamp": "February 14, 2024 - 10:47 UTC",
+        "company": "CipherTech Solutions",
+        "situation": "A finance analyst opened 'Invoice_February_2024.pdf'. Within seconds, EDR detected mass file modifications and files renamed with .locked extensions. Malware is active.",
+        "mission": [
+          "Assess endpoint state and process timeline",
+          "Identify C2 and network indicators",
+          "Contain the threat immediately",
+          "Decide recovery strategy",
+          "Document findings"
+        ]
+      },
+      "evidence": {
+        "endpoint": {
+          "device": "DESKTOP-EMP-042",
+          "user": "Sarah Chen (Finance Department)",
+          "ip": "192.168.1.142",
+          "os": "Windows 10 Pro",
+          "status": "INFECTED - Encryption Active"
+        },
+        "processTimeline": [
+          { "time": "10:45 AM", "name": "outlook.exe", "pid": 3421, "note": "Normal" },
+          { "time": "10:47 AM", "name": "attachment.pdf.exe", "pid": 5892, "note": "MALICIOUS" },
+          { "time": "10:47 AM", "name": "powershell.exe", "pid": 6103, "note": "SUSPICIOUS - base64 encoded command" },
+          { "time": "10:48 AM", "name": "encryption", "pid": 7001, "note": "File Encryption Started" }
+        ],
+        "malware": {
+          "hash": "a7f2c91d3e4b5a6f8c9d2e1b4a5c6d7e",
+          "vt": "45/70 vendors flagged",
+          "classification": "Conti Ransomware (Variant 2.3)",
+          "firstSeen": "3 days ago",
+          "behaviors": [
+            "File encryption using AES-256",
+            "Network enumeration",
+            "Shadow copy deletion",
+            "C2 communication",
+            "Lateral movement via SMB"
+          ]
+        },
+        "network": [
+          {
+            "label": "MALICIOUS",
+            "remote": "185.220.101.45:443",
+            "type": "TOR Exit Node - C2",
+            "dataSent": "2.3 MB",
+            "status": "ACTIVE"
+          },
+          {
+            "label": "Normal",
+            "remote": "192.168.1.1:53",
+            "type": "Internal DNS",
+            "status": "Safe"
+          }
+        ],
+        "filesystem": {
+          "encryptedCount": 1247,
+          "breakdown": {
+            "docx": 427,
+            "xlsx": 315,
+            "pdf": 505
+          },
+          "critical": [
+            "Q4_Financial_Report.xlsx",
+            "Client_Invoices_Feb2024.docx",
+            "Payroll_Data_2024.xlsx"
+          ],
+          "speed": "~15 files/second",
+          "elapsed": "8 minutes"
+        },
+        "ransomNote": {
+          "wallet": "bc1qxy2kgdygjrsqtzq2n0yrf...",
+          "amount": "0.5 BTC (~$25,000)",
+          "deadline": "48 hours",
+          "warnings": [
+            "After 48 hours, price doubles",
+            "After 72 hours, key deleted forever"
+          ]
+        },
+        "backup": {
+          "lastBackup": "12 hours ago (10:00 PM)",
+          "location": "Network Storage (offline)",
+          "integrity": "Verified - Not infected",
+          "potentialLoss": "~4 hours of work",
+          "recoveryTime": "2-3 hours"
+        }
+      },
+      "actions": [
+        { "id": "isolate", "text": "Isolate infected device from network", "impact": "critical", "correct": true, "points": 10 },
+        { "id": "disable-account", "text": "Disable Sarah Chen's account", "impact": "critical", "correct": true, "points": 8 },
+        { "id": "block-c2", "text": "Block C2 IP (185.220.101.45) at firewall", "impact": "critical", "correct": true, "points": 10 },
+        { "id": "kill-proc", "text": "Kill malicious process", "impact": "high", "correct": true, "points": 6 },
+        { "id": "check-backup", "text": "Check backup integrity", "impact": "high", "correct": true, "points": 6 },
+        { "id": "notify-manager", "text": "Notify IT Security Manager", "impact": "medium", "correct": true, "points": 4 }
+      ],
+      "recoveryOptions": [
+        { "id": "pay", "label": "Pay ransom ($25,000)", "correct": false, "points": 0 },
+        { "id": "restore", "label": "Restore from backup (4 hours data loss)", "correct": true, "points": 12 },
+        { "id": "manual", "label": "Attempt manual decryption", "correct": false, "points": 4 }
+      ],
+      "investigationPoints": 30
+    },
+
+    {
+      "id": "exfiltration",
+      "title": "Data Exfiltration",
+      "type": "data_loss_prevention",
+      "difficulty": "intermediate",
+      "severity": "critical",
+      "duration": "7 minutes",
+      "description": "Large off-hours data extraction to an external IP from a Senior DevOps Engineer. Potential insider threat and breach.",
+      "briefing": {
+        "incidentId": "INC-2024-0158",
+        "timestamp": "February 14, 2024 - 02:47 UTC",
+        "company": "CipherTech Solutions",
+        "situation": "Marcus Johnson accessed APEX_CLIENTS and transferred 4.2 GB to an external IP in Singapore outside normal hours.",
+        "mission": [
+          "Review employee profile and baseline behavior",
+          "Analyze anomalous timeline and destination IP",
+          "Assess breach severity and regulatory impact",
+          "Select response actions (preserve evidence)",
+          "Document findings and next steps"
+        ]
+      },
+      "evidence": {
+        "employee": {
+          "name": "Marcus Johnson",
+          "employeeId": "EMP-1547",
+          "position": "Senior DevOps Engineer",
+          "department": "Infrastructure & Operations",
+          "manager": "David Kim",
+          "tenure": "2 years, 5 months",
+          "clearance": "Level 3",
+          "performance": "Meets expectations",
+          "discipline": "Clean",
+          "recent": [
+            "LinkedIn profile updated 5 days ago",
+            "Open to opportunities"
+          ]
+        },
+        "baseline": {
+          "workHours": "9 AM - 6 PM EST (Mon-Fri)",
+          "location": "New York City, USA",
+          "avgData": "50 MB/day",
+          "maxQuery": "500 records",
+          "nightActivity": "Never recorded",
+          "devices": ["Work laptop", "Home desktop"]
+        },
+        "anomaly": {
+          "loginTime": "02:47 AM (6 hours before normal)",
+          "location": "Singapore",
+          "device": "Unknown (MAC: A4:C3:F0:2E:8D:1C)",
+          "dataVolume": "4.2 GB",
+          "querySize": "15,000 records"
+        },
+        "timeline": [
+          { "time": "02:47:03 AM", "event": "VPN Connection", "ip": "103.45.127.89", "device": "Unknown", "auth": "SUCCESS" },
+          { "time": "02:49:22 AM", "event": "Database Access - APEX_CLIENTS", "authz": "Level 3 ✓" },
+          { "time": "02:49:45 AM", "event": "SQL Query Executed", "query": "SELECT * FROM APEX_CLIENTS WHERE status='ACTIVE'", "records": 15000, "size": "4.1 GB" },
+          { "time": "02:52:18 AM", "event": "File Created", "name": "client_backup.zip", "size": "4.2 GB", "encrypted": false },
+          { "time": "02:58:34 AM", "event": "External Transfer (SSH/SCP)", "dst": "203.45.67.89:22", "duration": "5m 28s", "status": "COMPLETE" },
+          { "time": "03:04:15 AM", "event": "File Deleted", "method": "Shift+Delete" },
+          { "time": "03:05:42 AM", "event": "VPN Disconnection", "session": "18m 39s" }
+        ],
+        "destination": {
+          "ip": "203.45.67.89",
+          "location": "Bucharest, Romania",
+          "reputation": "HIGH RISK",
+          "blacklists": "2/10 feeds",
+          "associated": "Dark web marketplaces",
+          "ports": ["22 (SSH) OPEN", "9050 (TOR) OPEN"]
+        },
+        "dataCompromised": {
+          "database": "APEX_CLIENTS",
+          "records": 15000,
+          "fields": [
+            "customer_id",
+            "first_name",
+            "last_name",
+            "email_address",
+            "phone_number",
+            "home_address",
+            "account_balance",
+            "transaction_history",
+            "ssn (ENCRYPTED)",
+            "credit_card_number (ENCRYPTED)"
+          ],
+          "regulatory": [
+            "GDPR: Notify within 72 hours",
+            "CCPA: California residents notification",
+            "Potential fines: Up to $50M or 4% revenue"
+          ],
+          "darkWebValue": "$105,000"
+        }
+      },
+      "actions": [
+        { "id": "disable-account", "text": "Disable Marcus Johnson's account immediately", "impact": "critical", "correct": true, "points": 10 },
+        { "id": "block-ip", "text": "Block external IP (203.45.67.89)", "impact": "critical", "correct": true, "points": 8 },
+        { "id": "notify-legal", "text": "Notify Legal department", "impact": "high", "correct": true, "points": 6 },
+        { "id": "notify-hr", "text": "Notify HR department", "impact": "high", "correct": true, "points": 5 },
+        { "id": "preserve-logs", "text": "Preserve all logs and evidence", "impact": "high", "correct": true, "points": 6 },
+        { "id": "dont-alert", "text": "DO NOT alert employee yet", "impact": "critical", "correct": true, "points": 5 }
+      ],
+      "assessmentPoints": 15,
+      "investigationPoints": 25
+    }
+  ]
+}
