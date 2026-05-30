@@ -2,6 +2,8 @@
 
 A web-based SOC (Security Operations Center) Analyst Training Simulator where users role-play as security analysts responding to realistic cyber security incidents.
 
+website link - https://soc-simulator-black.vercel.app/dashboard
+
 ## 🎯 Features
 
 - **Three Realistic Scenarios:**
@@ -44,8 +46,6 @@ npm install
 ```bash
 npm run dev
 ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ### Demo Credentials
 - **Username:** analyst
@@ -107,24 +107,6 @@ Each scenario is scored out of 100 points:
 
 **Pass Threshold:** 70/100
 
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "Import Project"
-4. Select your GitHub repository
-5. Click "Deploy"
-
-Your app will be live at `your-project.vercel.app`
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
 
 ## 📚 Tech Stack
 
