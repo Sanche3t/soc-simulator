@@ -181,6 +181,17 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 For issues or questions, please open an issue on GitHub.
 
+## 👨‍💻 Author
+
+**Sancheet Pawar**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Sanche3t-181717?logo=github)](https://github.com/Sanche3t)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sancheet%20Pawar-0077B5?logo=linkedin)](https://linkedin.com/in/sancheet-pawar)
+
+---
+
+⭐ If you found this project helpful, please give it a star!
+
 ---
 
 **Built with ❤️ for cybersecurity education**
